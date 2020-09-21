@@ -17,6 +17,7 @@ export default function SignUp(props) {
 
   return (
     <form className="formContainer" onSubmit={onSubmit}>
+      <h2>Please enter your Information</h2>
       <div className="formInputs">
         <label>
           {""}
@@ -50,10 +51,31 @@ export default function SignUp(props) {
             type="text"
           />
         </label>
+        <label>
+          {""}
+          Password
+          <input
+            value={values.password}
+            onChange={onChange}
+            name="password"
+            type="password"
+          />
+        </label>
+        <label>
+          {""}
+          Confirm Password
+          <input
+            value={values.passwordConfirmation}
+            onChange={onChange}
+            name="passwordConfirmation"
+            type="password"
+          />
+        </label>
+
         <h2>Select Experience Level</h2>
         <label>
           {""}
-          Size
+          Level
           <select
             id="level"
             name="level"
@@ -71,34 +93,68 @@ export default function SignUp(props) {
       </div>
 
       <div>
-        <h2>Select Toppings</h2>
+        <h2>Cooking styles that interest you</h2>
 
         <label>
           {""}
-          pepperoni
+          American
           <input
-            id="pep"
+            id="american"
             type="checkbox"
-            name="pepperoni"
-            checked={values.pepperoni}
+            name="american"
+            checked={values.american}
+            onChange={onChange}
+          />
+        </label>
+
+        <label>
+          {""}
+          Mexican
+          <input
+            id="mexican"
+            type="checkbox"
+            name="mexican"
+            checked={values.mexican}
+            onChange={onChange}
+          />
+        </label>
+        <label>
+          {""}
+          French
+          <input
+            id="french"
+            type="checkbox"
+            name="french"
+            checked={values.french}
+            onChange={onChange}
+          />
+        </label>
+        <label>
+          {""}
+          Italian
+          <input
+            id="italian"
+            type="checkbox"
+            name="italian"
+            checked={values.italian}
             onChange={onChange}
           />
         </label>
       </div>
 
       <div className="formsubmit">
-        <Link to="/confirmation">
-          <button id="button" disabled={disabled}>
-            {" "}
-            ORDER !
-          </button>
-        </Link>
+        {/* <Link to="/confirmation"> */}
+        <button id="button" disabled={disabled}>
+          {" "}
+          Sign me up!
+        </button>
+        {/* </Link> */}
 
         <div className="errors">
           <div>{errors.name}</div>
           <div>{errors.phone}</div>
           <div>{errors.size}</div>
-          <div>{errors.toppings}</div>
+          <div>{errors.styles}</div>
         </div>
       </div>
     </form>

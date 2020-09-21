@@ -1,18 +1,19 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-export default function Login() {
-    const { values, submit, disabled, errors } = props;
-    const onChange = (evt) => {
-        const { name, value} = evt.target;
+export default function Login(props) {
+  const { values, submit, change, disabled, errors } = props;
 
+  const onSubmit = (evt) => {
+    evt.preventDefault();
+    submit();
+  };
 
-        const onSubmit = (evt) => {
-            evt.preventDefault();
-            submit();
-          };
-
-
+  const onChange = (evt) => {
+    const { name, value, type, checked } = evt.target;
+    const valueToUse = type === "checkbox" ? checked : value;
+    change(name, valueToUse);
+  };
 
   return (
     <div className="login">
@@ -21,9 +22,9 @@ export default function Login() {
         {""}
         Username
         <input
-          value={values.name}
-          onChange={onChange}
-          name="name"
+          //   value={values.username}
+          //   onChange={onChange}
+          name="username"
           type="text"
         />
       </label>
@@ -32,8 +33,8 @@ export default function Login() {
         {""}
         Password
         <input
-          value={values.name}
-          onChange={onChange}
+          //   value={values.password}
+          //   onChange={onChange}
           name="password"
           type="password"
         />
@@ -50,10 +51,9 @@ export default function Login() {
       </Link>
 
       <div className="errors">
-          <div>{errors.username}</div>
-          <div>{errors.password}</div>
-         
-    </div>
+        {/* <div>{errors.username}</div>
+        <div>{errors.password}</div> */}
+      </div>
     </div>
   );
 }

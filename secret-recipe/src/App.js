@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
-import OrderForm from "./orderform";
 import "./App.css";
 import schema from "./schema";
 import * as yup from "yup";
 // import Confirmation from "./Confirmation.js";
 import { Route, Switch, Link } from "react-router-dom";
 import axios from "axios";
+import SignUp from "./Form";
+import Login from "./login";
 
 const initialFormValues = {
   name: "",
@@ -37,9 +38,7 @@ function App() {
     axios
       .post("https://reqres.in/api/users", newUser)
       .then((res) => {
-        console.log(res.data);
-        console.log(orders);
-        setOrders([...orders, res.data]);
+        setUsers([...users, res.data]);
         setFormValues(initialFormValues);
       })
       .catch((err) => {
@@ -91,11 +90,11 @@ function App() {
   //   getOrders();
   // }, []);
 
-  useEffect(() => {
-    schema.isValid(formValues).then((valid) => {
-      setDisabled(!valid);
-    });
-  }, [formValues]);
+  // useEffect(() => {
+  //   schema.isValid(formValues).then((valid) => {
+  //     setDisabled(!valid);
+  //   });
+  // }, [formValues]);
 
   return (
     <div className="container">
@@ -104,15 +103,13 @@ function App() {
       </header>
       <nav>
         <Link to="/">Home</Link>
-        <Link to="/form">Order NOW</Link>{" "}
+        <Link to="/form">Sign Up!</Link> <Link to="/login">Log In</Link>
       </nav>
-      <h2>TESTING</h2>
-      <div className="landing">
-        <h3>testing</h3>
-      </div>
+
+      <div className="landing"></div>
       <Switch>
         <Route path="/form">
-          <OrderForm
+          <SignUp
             values={formValues}
             change={inputChange}
             submit={formSubmit}
@@ -120,9 +117,12 @@ function App() {
             errors={formErrors}
           />
         </Route>
-        <Route path="/confirmation">
-          <Confirmation values={formValues} />
+        <Route path="/login">
+          <Login />
         </Route>
+        {/* <Route path="/confirmation">
+          <Confirmation values={formValues} />
+        </Route> */}
       </Switch>
     </div>
   );
