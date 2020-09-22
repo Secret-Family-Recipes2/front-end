@@ -3,10 +3,11 @@ import "./App.css";
 import schema from "./Components/schema";
 import * as yup from "yup";
 import Confirmation from "./Components/Confirmation.js";
-import { Route, Switch, Link } from "react-router-dom";
+import { Route, Switch, NavLink } from "react-router-dom";
 import axios from "axios";
 import SignUp from "./Components/Form";
 import Login from "./Components/login";
+import "./App.css";
 
 const initialFormValues = {
   name: "",
@@ -82,9 +83,15 @@ function App() {
       name: formValues.name.trim(),
       email: formValues.email.trim(),
       password: formValues.password.trim(),
+      level: formValues.level.trim(),
+      // american: formValues.american,
+      // french: formValues.french,
+      // italian: formValues.italian,
+      // mexican: formValues.mexican,
+
       // passwordConfirmation: formValues.passwordConfirmation.trim(),
-      level: ["novice", "homeCook", "hobbyist", "private", "pro"].filter(
-        (lvl) => formValues[lvl]
+      styles: ["american", "mexican", "french", "italian"].filter(
+        (sty) => formValues[sty]
       ),
     };
     postNewUser(newUser);
@@ -103,15 +110,46 @@ function App() {
   return (
     <div className="container">
       <header>
-        <h1>Secret family recipes</h1>
+        <h1>Secret Family Recipes</h1>
       </header>
-      <nav>
-        <Link to="/">Home</Link>
-        <Link to="/form">Sign Up!</Link> <Link to="/login">Log In</Link>
+      <nav className="navbar">
+        <div>
+          <NavLink
+            to="/home"
+            activeStyle={{ color: "white", fontWeight: "bold" }}
+          >
+            Home
+          </NavLink>
+        </div>
+        <div>
+          <NavLink
+            to="/form"
+            activeStyle={{ color: "white", fontWeight: "bold" }}
+          >
+            Sign Up!
+          </NavLink>
+        </div>
+        <div>
+          <NavLink
+            to="/login"
+            activeStyle={{ color: "white", fontWeight: "bold" }}
+          >
+            Log In
+          </NavLink>
+        </div>
       </nav>
 
       <div className="landing"></div>
       <Switch>
+        <Route
+          path="/home"
+          component={() => {
+            window.location.href =
+              "https://secret-family-recipies.netlify.app/recipes.html";
+            return null;
+          }}
+        />
+
         <Route path="/form">
           <SignUp
             values={formValues}

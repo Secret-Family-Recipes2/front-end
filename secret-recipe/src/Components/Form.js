@@ -1,5 +1,6 @@
 import React from "react";
 // import { Link, Route, Switch, useRouteMatch } from "react-router-dom";
+import "../App.css";
 
 export default function SignUp(props) {
   const { values, submit, change, disabled, errors } = props;
