@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./App.css";
 import schema from "./schema";
 import * as yup from "yup";
-// import Confirmation from "./Confirmation.js";
+import Confirmation from "./Confirmation.js";
 import { Route, Switch, Link } from "react-router-dom";
 import axios from "axios";
 import SignUp from "./Form";
@@ -90,11 +90,11 @@ function App() {
   //   getOrders();
   // }, []);
 
-  // useEffect(() => {
-  //   schema.isValid(formValues).then((valid) => {
-  //     setDisabled(!valid);
-  //   });
-  // }, [formValues]);
+  useEffect(() => {
+    schema.isValid(formValues).then((valid) => {
+      setDisabled(!valid);
+    });
+  }, [formValues]);
 
   return (
     <div className="container">
@@ -118,11 +118,17 @@ function App() {
           />
         </Route>
         <Route path="/login">
-          <Login />
+          <Login
+            values={formValues}
+            change={inputChange}
+            submit={formSubmit}
+            disabled={disabled}
+            errors={formErrors}
+          />
         </Route>
-        {/* <Route path="/confirmation">
+        <Route path="/confirmation">
           <Confirmation values={formValues} />
-        </Route> */}
+        </Route>
       </Switch>
     </div>
   );

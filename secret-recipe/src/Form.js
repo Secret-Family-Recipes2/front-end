@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useRouteMatch } from "react-router-dom";
+import { Link, Route, Switch, useRouteMatch } from "react-router-dom";
 
 export default function SignUp(props) {
   const { values, submit, change, disabled, errors } = props;
@@ -143,17 +143,23 @@ export default function SignUp(props) {
       </div>
 
       <div className="formsubmit">
-        {/* <Link to="/confirmation"> */}
-        <button id="button" disabled={disabled}>
-          {" "}
-          Sign me up!
-        </button>
-        {/* </Link> */}
+        <Link to="/confirmation">
+          <button id="button" disabled={disabled}>
+            {" "}
+            Sign me up!
+          </button>
+        </Link>
+
+        <Switch>
+          <Route path="/confirmation"></Route>
+        </Switch>
 
         <div className="errors">
           <div>{errors.name}</div>
-          <div>{errors.phone}</div>
-          <div>{errors.size}</div>
+          <div>{errors.email}</div>
+          <div>{errors.password}</div>
+          <div>{errors.passwordConfirmation}</div>
+          <div>{errors.level}</div>
           <div>{errors.styles}</div>
         </div>
       </div>
