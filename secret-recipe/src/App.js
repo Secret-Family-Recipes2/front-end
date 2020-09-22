@@ -109,6 +109,9 @@ function App() {
 
   return (
     <div className="container">
+      <div className="navborder">
+        <br></br>
+      </div>
       <header>
         <h1>Secret Family Recipes</h1>
       </header>
@@ -139,7 +142,6 @@ function App() {
         </div>
       </nav>
 
-      <div className="landing"></div>
       <Switch>
         <Route
           path="/home"

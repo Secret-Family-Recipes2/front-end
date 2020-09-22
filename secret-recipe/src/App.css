@@ -158,6 +158,10 @@ body {
 
 }
 
+.navborder {
+  background-color: #fca311;
+}
+
 /* .container {
   background-color: #14213d;
 } */
@@ -171,6 +175,7 @@ header {
   display: flex;
   background-color: #14213d;
   color: white;
+  padding-bottom: 1rem;
 }
 
 
