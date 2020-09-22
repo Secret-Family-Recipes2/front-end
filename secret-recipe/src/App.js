@@ -10,6 +10,9 @@ import Login from "./Components/login";
 
 const initialFormValues = {
   name: "",
+  email: "",
+  password: "",
+  // passwordConfirmation: "",
   username: "",
   level: "",
   american: false,
@@ -22,7 +25,7 @@ const initialFormErrors = {
   name: "",
   email: "",
   password: "",
-  passwordConfirmation: "",
+  // passwordConfirmation: "",
 };
 
 const initialDisabled = true;
@@ -38,6 +41,7 @@ function App() {
     axios
       .post("https://reqres.in/api/users", newUser)
       .then((res) => {
+        console.log(res.data);
         setUsers([...users, res.data]);
         setFormValues(initialFormValues);
       })
@@ -78,7 +82,7 @@ function App() {
       name: formValues.name.trim(),
       email: formValues.email.trim(),
       password: formValues.password.trim(),
-      passwordConfirmation: formValues.passwordConfirmation.trim(),
+      // passwordConfirmation: formValues.passwordConfirmation.trim(),
       level: ["novice", "homeCook", "hobbyist", "private", "pro"].filter(
         (lvl) => formValues[lvl]
       ),

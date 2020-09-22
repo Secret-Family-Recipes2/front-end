@@ -22,8 +22,8 @@ export default function Login(props) {
         {""}
         Username
         <input
-          //   value={values.username}
-          //   onChange={onChange}
+          value={values.username}
+          onChange={onChange}
           name="username"
           type="text"
         />
@@ -33,8 +33,8 @@ export default function Login(props) {
         {""}
         Password
         <input
-          //   value={values.password}
-          //   onChange={onChange}
+          value={values.password}
+          onChange={onChange}
           name="password"
           type="password"
         />
@@ -51,8 +51,8 @@ export default function Login(props) {
       </Link>
 
       <div className="errors">
-        {/* <div>{errors.username}</div>
-        <div>{errors.password}</div> */}
+        <div>{errors.username}</div>
+        <div>{errors.password}</div>
       </div>
     </div>
   );

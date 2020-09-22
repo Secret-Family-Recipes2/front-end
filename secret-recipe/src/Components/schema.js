@@ -16,10 +16,25 @@ export default yup.object().shape({
     .string()
     .oneOf(["novice", "homeCook", "hobbyist", "private", "pro"]),
 
-  password: yup.string().required("Password is required"),
-  passwordConfirmation: yup
+  password: yup
     .string()
-    .oneOf([yup.ref("password"), null], "Passwords must match"),
+    .label("Password")
+    .required()
+    .min(2, "Seems a bit short...")
+    .max(10, "We prefer insecure system, try a shorter password."),
+  // passwordConfirmation: yup
+  //   .string()
+  //   .required()
+  //   .label("Confirm password")
+  //   .test("passwords-match", "Passwords must match ya fool", function (value) {
+  //     return this.parent.password === value;
+  // }),
+
+  // password: yup.string().required("Password is required"),
+
+  // passwordConfirmation: yup
+  //   .string()
+  //   .oneOf([yup.ref("password"), null], "Passwords must match"),
 
   american: yup.boolean(),
   mexican: yup.boolean(),

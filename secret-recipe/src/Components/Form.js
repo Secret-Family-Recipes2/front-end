@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, Route, Switch, useRouteMatch } from "react-router-dom";
+// import { Link, Route, Switch, useRouteMatch } from "react-router-dom";
 
 export default function SignUp(props) {
   const { values, submit, change, disabled, errors } = props;
@@ -61,7 +61,7 @@ export default function SignUp(props) {
             type="password"
           />
         </label>
-        <label>
+        {/* <label>
           {""}
           Confirm Password
           <input
@@ -70,7 +70,7 @@ export default function SignUp(props) {
             name="passwordConfirmation"
             type="password"
           />
-        </label>
+        </label> */}
 
         <h2>Select Experience Level</h2>
         <label>
