@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import "../App.css";
 
 export default function Login(props) {
   const { values, submit, change, disabled, errors } = props;
@@ -16,29 +17,32 @@ export default function Login(props) {
   };
 
   return (
-    <div className="login">
-      <h2>Please log-in to continue</h2>
-      <label>
-        {""}
-        Username
-        <input
-          value={values.username}
-          onChange={onChange}
-          name="username"
-          type="text"
-        />
-      </label>
-
-      <label>
-        {""}
-        Password
-        <input
-          value={values.password}
-          onChange={onChange}
-          name="password"
-          type="password"
-        />
-      </label>
+    <div className="login-box">
+      <h2>Login</h2>
+      <div className="user-box">
+        <label>
+          {""}
+          Username
+          <input
+            value={values.username}
+            onChange={onChange}
+            name="username"
+            type="text"
+          />
+        </label>
+      </div>
+      <div className="user-box">
+        <label>
+          {""}
+          Password
+          <input
+            value={values.password}
+            onChange={onChange}
+            name="password"
+            type="password"
+          />
+        </label>
+      </div>
       <Link to="/mainpage">
         <button id="signIn" disabled={disabled}>
           {" "}
