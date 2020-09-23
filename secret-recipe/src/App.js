@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
+import User from "./Components/users";
 import schema from "./Components/schema";
 import * as yup from "yup";
 import Confirmation from "./Components/Confirmation.js";
@@ -38,6 +39,17 @@ function App() {
   const [formValues, setFormValues] = useState(initialFormValues);
   const [formErrors, setFormErrors] = useState(initialFormErrors);
   const [disabled, setDisabled] = useState(initialDisabled);
+
+  const getUsers = () => {
+    axios
+      .get("https://reqres.in/api/users")
+      .then((res) => {
+        setUsers(res.data.data);
+      })
+      .catch((err) => {
+        console.log(err, "i messed up");
+      });
+  };
 
   const postNewUser = (newUser) => {
     axios
@@ -98,9 +110,9 @@ function App() {
     postNewUser(newUser);
   };
 
-  // useEffect(() => {
-  //   getOrders();
-  // }, []);
+  useEffect(() => {
+    getUsers();
+  }, []);
 
   useEffect(() => {
     schema.isValid(formValues).then((valid) => {
@@ -176,6 +188,9 @@ function App() {
                 </Route>
                 <Route path="/confirmation">
                   <Confirmation values={formValues} />
+                  {users.map((user) => {
+                    return <User key={users.id} values={user} />;
+                  })}
                 </Route>
               </Switch>
             </CSSTransition>
