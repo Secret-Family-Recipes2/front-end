@@ -1,14 +1,19 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import "../App.css";
 
 export default function Login(props) {
   const { values, submit, change, errors } = props;
 
-  // const onSubmit = (evt) => {
-  //   evt.preventDefault();
-  //   submit();
-  // };
+
+  const history = useHistory();
+
+  const onSubmit = (evt) => {
+    evt.preventDefault();
+    submit();
+    history.push("/recipes");
+  };
+
 
   const onChange = (evt) => {
     const { name, value, type, checked } = evt.target;
@@ -43,8 +48,9 @@ export default function Login(props) {
           />
         </label>
       </div>
+
       <Link to="/home">
-        <button id="signIn"> Sign In</button>
+        <button onClick={onSubmit} id="signIn"> Sign In</button>
       </Link>
 
       <Link to="/form">
