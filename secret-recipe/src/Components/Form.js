@@ -30,7 +30,7 @@ export default function SignUp(props) {
             type="text"
           />
         </label>
-
+        <br></br>
         <label>
           {""}
           Email
@@ -41,7 +41,7 @@ export default function SignUp(props) {
             type="email"
           />
         </label>
-
+        <br></br>
         <label>
           {""}
           Desired username
@@ -52,6 +52,7 @@ export default function SignUp(props) {
             type="text"
           />
         </label>
+        <br></br>
         <label>
           {""}
           Password
