@@ -3,7 +3,8 @@ import { Link, useHistory } from "react-router-dom";
 import "../App.css";
 
 export default function Login(props) {
-  const { values, submit, change, disabled, errors } = props;
+  const { values, submit, change, errors } = props;
+
 
   const history = useHistory();
 
@@ -12,6 +13,7 @@ export default function Login(props) {
     submit();
     history.push("/recipes");
   };
+
 
   const onChange = (evt) => {
     const { name, value, type, checked } = evt.target;
@@ -46,11 +48,9 @@ export default function Login(props) {
           />
         </label>
       </div>
-      <Link to="/mainpage">
-        <button onClick={onSubmit} id="signIn">
-          {" "}
-          Sign In
-        </button>
+
+      <Link to="/home">
+        <button onClick={onSubmit} id="signIn"> Sign In</button>
       </Link>
 
       <Link to="/form">

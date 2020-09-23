@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
+import User from "./Components/users";
 import schema from "./Components/schema";
 import * as yup from "yup";
 import Confirmation from "./Components/Confirmation.js";
@@ -11,6 +12,8 @@ import "./App.css";
 import Recipes from "./Components/Recipes";
 import { axiosWithAuth } from "./utils/axioswithauth";
 import PrivateRoute from "./Components/PrivateRoute";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
+
 
 const initialFormValues = {
   name: "",
@@ -40,6 +43,17 @@ function App() {
   const [formValues, setFormValues] = useState(initialFormValues);
   const [formErrors, setFormErrors] = useState(initialFormErrors);
   const [disabled, setDisabled] = useState(initialDisabled);
+
+  const getUsers = () => {
+    axios
+      .get("https://reqres.in/api/users")
+      .then((res) => {
+        setUsers(res.data.data);
+      })
+      .catch((err) => {
+        console.log(err, "i messed up");
+      });
+  };
 
   const postNewUser = (newUser) => {
     const info = {
@@ -110,6 +124,7 @@ function App() {
     postNewUser(newUser);
   };
 
+
   const loginSubmit = () => {
     const loginValue = {
       username: formValues.username.trim(),
@@ -130,6 +145,11 @@ function App() {
   // }, []);
 
   useEffect(() => {
+    getUsers();
+  }, []);
+
+
+  useEffect(() => {
     schema.isValid(formValues).then((valid) => {
       setDisabled(!valid);
     });
@@ -142,33 +162,32 @@ function App() {
       </div>
       <header>
         <h1>Secret Family Recipes</h1>
-      </header>
-      <nav className="navbar">
-        <div>
-          <NavLink
-            to="/home"
-            activeStyle={{ color: "white", fontWeight: "bold" }}
-          >
-            Home
-          </NavLink>
-        </div>
-        <div>
-          <NavLink
-            to="/form"
-            activeStyle={{ color: "white", fontWeight: "bold" }}
-          >
-            Sign Up!
-          </NavLink>
-        </div>
-        <div>
-          <NavLink
-            to="/login"
-            activeStyle={{ color: "white", fontWeight: "bold" }}
-          >
-            Log In
-          </NavLink>
-        </div>
-        <div>
+        <nav className="navbar">
+          <div>
+            <NavLink
+              to="/home"
+              activeStyle={{ color: "white", fontWeight: "bold" }}
+            >
+              Home
+            </NavLink>
+          </div>
+          <div>
+            <NavLink
+              to="/form"
+              activeStyle={{ color: "white", fontWeight: "bold" }}
+            >
+              Sign Up!
+            </NavLink>
+          </div>
+          <div>
+            <NavLink
+              to="/login"
+              activeStyle={{ color: "white", fontWeight: "bold" }}
+            >
+              Log In
+            </NavLink>
+          </div>
+     <div>
           <NavLink
             to="/recipes"
             activeStyle={{ color: "white", fontWeight: "bold" }}
@@ -176,31 +195,37 @@ function App() {
             Recipes
           </NavLink>
         </div>
-      </nav>
+        </nav>
+      </header>
 
-      <Switch>
-        <Route
-          path="/home"
-          component={() => {
-            window.location.href =
-              "https://secret-family-recipies.netlify.app/recipes.html";
-            return null;
-          }}
-        />
-        <PrivateRoute exact path="/recipes">
+      <Route
+        render={({ location }) => (
+          <TransitionGroup>
+            <CSSTransition key={location.key} timeout={300} classNames="fade">
+              <Switch location={location}>
+                <Route
+                  path="/home"
+                  component={() => {
+                    window.location.href =
+                      "https://secret-family-recipies.netlify.app/recipes.html";
+                    return null;
+                  }}
+                />
+
+              <PrivateRoute exact path="/recipes">
           <Recipes />
         </PrivateRoute>
 
-        <Route path="/form">
-          <SignUp
-            values={formValues}
-            change={inputChange}
-            submit={formSubmit}
-            disabled={disabled}
-            errors={formErrors}
-          />
-        </Route>
-        <Route path="/login">
+                <Route path="/form">
+                  <SignUp
+                    values={formValues}
+                    change={inputChange}
+                    submit={formSubmit}
+                    disabled={disabled}
+                    errors={formErrors}
+                  />
+                </Route>
+               <Route path="/login">
           <Login
             values={formValues}
             change={inputChange}
@@ -209,10 +234,48 @@ function App() {
             errors={formErrors}
           />
         </Route>
-        <Route path="/confirmation">
-          <Confirmation values={formValues} />
-        </Route>
-      </Switch>
+                <Route path="/confirmation">
+                  <Confirmation values={formValues} />
+                  {users.map((user) => {
+                    return <User key={users.id} values={user} />;
+                  })}
+                </Route>
+              </Switch>
+            </CSSTransition>
+          </TransitionGroup>
+        )}
+      />
+      {/* <footer>
+        <nav className="navbar">
+          <div>
+            <NavLink
+              to="/home"
+              activeStyle={{ color: "white", fontWeight: "bold" }}
+            >
+              Home
+            </NavLink>
+          </div>
+          <div>
+            <NavLink
+              to="/form"
+              activeStyle={{ color: "white", fontWeight: "bold" }}
+            >
+              Sign Up!
+            </NavLink>
+          </div>
+          <div>
+            <NavLink
+              to="/login"
+              activeStyle={{ color: "white", fontWeight: "bold" }}
+            >
+              Log In
+            </NavLink>
+          </div>
+        </nav>
+        <div className="navborder">
+          <p>Copyright Ⓒ 2020</p>
+        </div>
+      </footer> */}
     </div>
   );
 }
