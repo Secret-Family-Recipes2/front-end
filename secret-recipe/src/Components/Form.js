@@ -22,7 +22,7 @@ export default function SignUp(props) {
       <div className="formInputs">
         <label>
           {""}
-          Name
+          Name:
           <input
             value={values.name}
             onChange={onChange}
@@ -33,7 +33,7 @@ export default function SignUp(props) {
         <br></br>
         <label>
           {""}
-          Email
+          Email:
           <input
             value={values.email}
             onChange={onChange}
@@ -44,7 +44,7 @@ export default function SignUp(props) {
         <br></br>
         <label>
           {""}
-          Desired username
+          Desired Username:
           <input
             value={values.username}
             onChange={onChange}
@@ -55,7 +55,7 @@ export default function SignUp(props) {
         <br></br>
         <label>
           {""}
-          Password
+          Password:
           <input
             value={values.password}
             onChange={onChange}

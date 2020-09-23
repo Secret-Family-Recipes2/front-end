@@ -125,7 +125,7 @@ blockquote:before,
 blockquote:after,
 q:before,
 q:after {
-  content: '';
+  content: "";
   content: none;
 }
 
@@ -134,13 +134,10 @@ table {
   border-spacing: 0;
 }
 
-
-
-@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Roboto+Slab:wght@300;500;700&family=Roboto:wght@300;500;700&display=swap');
-
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Roboto+Slab:wght@300;500;700&family=Roboto:wght@300;500;700&display=swap");
 
 h1 {
-  font-family: 'Dancing Script', cursive;
+  font-family: "Dancing Script", cursive;
   color: white;
   font-size: 4rem;
   font-weight: 700;
@@ -148,15 +145,17 @@ h1 {
   text-align: center;
   padding-bottom: 1rem;
   padding-top: 1rem;
-
 }
 
 body {
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   font-size: 1rem;
   font-weight: 300;
   color: #4f4f4f;
+}
 
+footer .navborder {
+  text-align: center;
 }
 
 .navborder {
@@ -169,7 +168,6 @@ body {
 
 header {
   background-color: #14213d;
-  ;
 }
 
 .navbar {
@@ -177,11 +175,27 @@ header {
   background-color: #14213d;
   color: white;
   padding-bottom: 1rem;
-
 }
 
+.fade-appear .fade-enter {
+  opacity: 0;
+  z-index: 1;
+}
+.fade-appear-active .fade-enter.fade-enter-active {
+  opacity: 1;
+  transition: opacity 300ms linear 150ms;
+}
 
+.fade-exit {
+  opacity: 1;
+}
 
+.fade-exit.fade-exit-active {
+  opacity: 0;
+  transition: opacity 150ms linear;
+}
+
+/* LOGIN PAGE */
 .login-box {
   position: absolute;
   top: 50%;
@@ -189,9 +203,9 @@ header {
   width: 400px;
   padding: 40px;
   transform: translate(-50%, -50%);
-  background: rgba(0, 0, 0, .5);
+  /* background: rgba(0, 0, 0, .5); */
   box-sizing: border-box;
-  box-shadow: 0 15px 25px rgba(0, 0, 0, .6);
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.6);
   border-radius: 10px;
 }
 
@@ -214,16 +228,13 @@ header {
   width: 100%;
   padding: 10px 0;
   font-size: 16px;
-  color: #fff;
+  color: #14213d;
   margin-bottom: 30px;
   border: none;
   border-bottom: 1px solid #14213d;
   outline: none;
   background: none;
 }
-
-
-
 
 .login-box form a {
   position: relative;
@@ -234,23 +245,20 @@ header {
   text-decoration: none;
   text-transform: uppercase;
   overflow: hidden;
-  transition: .5s;
+  transition: 0.5s;
   margin-top: 40px;
-  letter-spacing: 4px
+  letter-spacing: 4px;
 }
 
 .login-box a:hover {
   background: #fca311;
   color: #fff;
   border-radius: 5px;
-  box-shadow: 0 0 5px #fca311,
-    0 0 25px #fca311,
-    0 0 50px #fca311,
+  box-shadow: 0 0 5px #fca311, 0 0 25px #fca311, 0 0 50px #fca311,
     0 0 100px #fca311;
 }
 
-
-/* //SignUP page Styles// */
+/* //SignUP page Stylesddddddddddddddddddddddddddddddddddddddddddddddddddddddddd// */
 
 h2 {
   padding-top: 2rem;
@@ -287,4 +295,16 @@ select {
   height: 20px;
   flex: 0 0 200px;
   margin-left: 10px;
+}
+
+.formContainer input {
+  width: 100%;
+  padding: 1px 0;
+  font-size: 16px;
+  color: #14213d;
+  margin-bottom: 30px;
+  border: none;
+  border-bottom: 1px solid #14213d;
+  outline: none;
+  background: none;
 }
