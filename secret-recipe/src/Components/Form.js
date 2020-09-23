@@ -1,5 +1,5 @@
 import React from "react";
-// import { Link, Route, Switch, useRouteMatch } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "../App.css";
 
 export default function SignUp(props) {
@@ -145,16 +145,12 @@ export default function SignUp(props) {
       </div>
 
       <div className="formsubmit">
-        {/* <Link to="/confirmation"> */}
-        <button id="button" disabled={disabled}>
-          {" "}
-          Sign me up!
-        </button>
-        {/* </Link> */}
-        {/* 
-        <Switch>
-          <Route path="/confirmation"></Route>
-        </Switch> */}
+        <Link to="/confirmation">
+          <button id="button" disabled={disabled}>
+            {" "}
+            Sign me up!
+          </button>
+        </Link>
 
         <div className="errors">
           <div>{errors.name}</div>
