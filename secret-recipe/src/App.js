@@ -8,6 +8,7 @@ import axios from "axios";
 import SignUp from "./Components/Form";
 import Login from "./Components/login";
 import "./App.css";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
 
 const initialFormValues = {
   name: "",
@@ -141,39 +142,77 @@ function App() {
           </NavLink>
         </div>
       </nav>
+      <Route
+        render={({ location }) => (
+          <TransitionGroup>
+            <CSSTransition key={location.key} timeout={300} classNames="fade">
+              <Switch location={location}>
+                <Route
+                  path="/home"
+                  component={() => {
+                    window.location.href =
+                      "https://secret-family-recipies.netlify.app/recipes.html";
+                    return null;
+                  }}
+                />
 
-      <Switch>
-        <Route
-          path="/home"
-          component={() => {
-            window.location.href =
-              "https://secret-family-recipies.netlify.app/recipes.html";
-            return null;
-          }}
-        />
-
-        <Route path="/form">
-          <SignUp
-            values={formValues}
-            change={inputChange}
-            submit={formSubmit}
-            disabled={disabled}
-            errors={formErrors}
-          />
-        </Route>
-        <Route path="/login">
-          <Login
-            values={formValues}
-            change={inputChange}
-            submit={formSubmit}
-            disabled={disabled}
-            errors={formErrors}
-          />
-        </Route>
-        <Route path="/confirmation">
-          <Confirmation values={formValues} />
-        </Route>
-      </Switch>
+                <Route path="/form">
+                  <SignUp
+                    values={formValues}
+                    change={inputChange}
+                    submit={formSubmit}
+                    disabled={disabled}
+                    errors={formErrors}
+                  />
+                </Route>
+                <Route path="/login">
+                  <Login
+                    values={formValues}
+                    change={inputChange}
+                    submit={formSubmit}
+                    disabled={disabled}
+                    errors={formErrors}
+                  />
+                </Route>
+                <Route path="/confirmation">
+                  <Confirmation values={formValues} />
+                </Route>
+              </Switch>
+            </CSSTransition>
+          </TransitionGroup>
+        )}
+      />
+      <footer>
+        <nav className="navbar">
+          <div>
+            <NavLink
+              to="/home"
+              activeStyle={{ color: "white", fontWeight: "bold" }}
+            >
+              Home
+            </NavLink>
+          </div>
+          <div>
+            <NavLink
+              to="/form"
+              activeStyle={{ color: "white", fontWeight: "bold" }}
+            >
+              Sign Up!
+            </NavLink>
+          </div>
+          <div>
+            <NavLink
+              to="/login"
+              activeStyle={{ color: "white", fontWeight: "bold" }}
+            >
+              Log In
+            </NavLink>
+          </div>
+        </nav>
+        <div className="navborder">
+          <p>Copyright Ⓒ 2020</p>
+        </div>
+      </footer>
     </div>
   );
 }
