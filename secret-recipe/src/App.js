@@ -127,33 +127,33 @@ function App() {
       </div>
       <header>
         <h1>Secret Family Recipes</h1>
+        <nav className="navbar">
+          <div>
+            <NavLink
+              to="/home"
+              activeStyle={{ color: "white", fontWeight: "bold" }}
+            >
+              Home
+            </NavLink>
+          </div>
+          <div>
+            <NavLink
+              to="/form"
+              activeStyle={{ color: "white", fontWeight: "bold" }}
+            >
+              Sign Up!
+            </NavLink>
+          </div>
+          <div>
+            <NavLink
+              to="/login"
+              activeStyle={{ color: "white", fontWeight: "bold" }}
+            >
+              Log In
+            </NavLink>
+          </div>
+        </nav>
       </header>
-      <nav className="navbar">
-        <div>
-          <NavLink
-            to="/home"
-            activeStyle={{ color: "white", fontWeight: "bold" }}
-          >
-            Home
-          </NavLink>
-        </div>
-        <div>
-          <NavLink
-            to="/form"
-            activeStyle={{ color: "white", fontWeight: "bold" }}
-          >
-            Sign Up!
-          </NavLink>
-        </div>
-        <div>
-          <NavLink
-            to="/login"
-            activeStyle={{ color: "white", fontWeight: "bold" }}
-          >
-            Log In
-          </NavLink>
-        </div>
-      </nav>
       <Route
         render={({ location }) => (
           <TransitionGroup>
@@ -197,7 +197,7 @@ function App() {
           </TransitionGroup>
         )}
       />
-      <footer>
+      {/* <footer>
         <nav className="navbar">
           <div>
             <NavLink
@@ -227,7 +227,7 @@ function App() {
         <div className="navborder">
           <p>Copyright Ⓒ 2020</p>
         </div>
-      </footer>
+      </footer> */}
     </div>
   );
 }
