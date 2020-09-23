@@ -10,6 +10,7 @@ import Login from "./Components/login";
 import "./App.css";
 import Recipes from "./Components/Recipes";
 import { axiosWithAuth } from "./utils/axioswithauth";
+import PrivateRoute from "./Components/PrivateRoute";
 
 const initialFormValues = {
   name: "",
@@ -186,9 +187,9 @@ function App() {
             return null;
           }}
         />
-        <Route path="/recipes">
+        <PrivateRoute exact path="/recipes">
           <Recipes />
-        </Route>
+        </PrivateRoute>
 
         <Route path="/form">
           <SignUp

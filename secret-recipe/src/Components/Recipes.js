@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
 import Recipe from "./Recipe";
 import { axiosWithAuth } from "../utils/axioswithauth";
-
+import { connect } from "react-redux";
+import { fetchRecipes } from "../actions/recipesActions";
 const dummyData = [
   {
     id: 1,
@@ -54,26 +55,37 @@ const dummyData = [
   },
 ];
 
-const Recipes = () => {
+const recipeData = [];
+
+const Recipes = (props) => {
+  // useEffect(() => {
+  //   axiosWithAuth()
+  //     .get("/recipes/all")
+  //     .then((res) => {
+  //       console.log(res.data);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // }, []);
   useEffect(() => {
-    axiosWithAuth()
-      .get("/recipes/all")
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    props.fetchRecipes();
   }, []);
 
   return (
     <div>
       <p>This is the List</p>
-      {dummyData.map((item) => {
+      {props.data.map((item) => {
         return <Recipe key={item.id} details={item} />;
       })}
     </div>
   );
 };
 
-export default Recipes;
+const mapStateToProps = (state) => {
+  return {
+    data: state.data,
+  };
+};
+
+export default connect(mapStateToProps, { fetchRecipes })(Recipes);

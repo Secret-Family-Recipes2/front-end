@@ -4,8 +4,8 @@ const Recipe = (props) => {
   const { title, source, category, description } = props.details;
   return (
     <div>
-      <p>{title}</p>
-      <p>{source}</p>
+      <p style={{ color: "red" }}>{title}</p>
+      <p>Made by: {source}</p>
 
       <p>{description}</p>
 
