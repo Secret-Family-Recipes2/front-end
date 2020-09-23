@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
-import User from "../Components/users";
+import "../App.css";
 
 export default function Confirmation({ values }) {
   return (

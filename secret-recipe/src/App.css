@@ -157,6 +157,12 @@ body {
 footer .navborder {
   text-align: center;
 }
+footer {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
 
 .navborder {
   background-color: #fca311;
@@ -169,12 +175,24 @@ footer .navborder {
 header {
   background-color: #14213d;
 }
-
 .navbar {
   display: flex;
   background-color: #14213d;
   color: white;
+  padding-top: 1rem;
   padding-bottom: 1rem;
+  justify-content: space-around;
+  width: 40%;
+  margin: 0 auto;
+}
+.navbar a {
+  text-decoration: none;
+  color: inherit;
+
+  /* display: flex;
+  background-color: #14213d;
+  color: white;
+  padding-bottom: 10rem; */
 }
 
 .fade-appear .fade-enter {
@@ -216,7 +234,7 @@ header {
 .login-box h2 {
   margin: 0 0 30px;
   padding: 0;
-  color: #fff;
+  color: #14213d;
   text-align: center;
 }
 
@@ -265,14 +283,20 @@ h2 {
   padding-bottom: 1rem;
   font-weight: 900;
 }
+.formsubmit {
+  width: 90%;
+}
 
+form {
+  margin: 0 auto;
+}
 .formContainer {
   display: flex;
   flex-direction: column;
-  max-width: 60%;
+
   justify-content: space-between;
   padding-bottom: 5rem;
-  margin: 0 10%;
+  margin: auto;
 }
 
 .formContainer label {
@@ -316,4 +340,8 @@ select {
   margin: 5% 10%;
   padding: 2rem;
   background-color: rgb(210, 210, 210);
+}
+
+.confirmation {
+  margin: auto 10%;
 }
