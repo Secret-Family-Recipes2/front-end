@@ -10,7 +10,8 @@ export default yup.object().shape({
   username: yup
     .string()
     .required("Please enter a Username")
-    .min(6, "username must be at least 6 characters long"),
+    .min(6, "Username must be at least 6 characters long")
+    .max(10, "Now you're getting carried away, username is too long"),
 
   level: yup
     .string()
