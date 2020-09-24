@@ -147,11 +147,12 @@ export default function SignUp(props) {
 
         <div className="formsubmit">
           <Link to="/confirmation">
-            <button id="button" disabled={disabled}>
+            <button id="button" >
               {" "}
               Sign me up!
             </button>
           </Link>
+
 
           <div className="errors">
             <div>{errors.name}</div>
