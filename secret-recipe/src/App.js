@@ -138,6 +138,31 @@ function App() {
           </div>
           <div>
             <NavLink
+              to="/features"
+              activeStyle={{ color: "white", fontWeight: "bold" }}
+            >
+              Features
+            </NavLink>
+          </div>
+          <div>
+            <NavLink
+              to="/recipes"
+              activeStyle={{ color: "white", fontWeight: "bold" }}
+            >
+              Recipes
+            </NavLink>
+          </div>
+          <div>
+            <NavLink
+              to="/about"
+              activeStyle={{ color: "white", fontWeight: "bold" }}
+            >
+              Our Team
+            </NavLink>
+          </div>
+
+          <div>
+            <NavLink
               to="/form"
               activeStyle={{ color: "white", fontWeight: "bold" }}
             >
@@ -163,7 +188,31 @@ function App() {
                   path="/home"
                   component={() => {
                     window.location.href =
+                      "https://secret-family-recipies.netlify.app/index.html";
+                    return null;
+                  }}
+                />
+                <Route
+                  path="/recipes"
+                  component={() => {
+                    window.location.href =
                       "https://secret-family-recipies.netlify.app/recipes.html";
+                    return null;
+                  }}
+                />
+                <Route
+                  path="/features"
+                  component={() => {
+                    window.location.href =
+                      "https://secret-family-recipies.netlify.app/features.html";
+                    return null;
+                  }}
+                />
+                <Route
+                  path="/about"
+                  component={() => {
+                    window.location.href =
+                      "https://secret-family-recipies.netlify.app/about.html";
                     return null;
                   }}
                 />

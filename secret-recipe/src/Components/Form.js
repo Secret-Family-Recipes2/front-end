@@ -156,8 +156,8 @@ export default function SignUp(props) {
           <div className="errors">
             <div>{errors.name}</div>
             <div>{errors.email}</div>
+            <div>{errors.username}</div>
             <div>{errors.password}</div>
-
             <div>{errors.level}</div>
             <div>{errors.styles}</div>
           </div>
