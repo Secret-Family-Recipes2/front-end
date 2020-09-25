@@ -13,7 +13,9 @@ import Recipes from "./Components/Recipes";
 import { axiosWithAuth } from "./utils/axioswithauth";
 import PrivateRoute from "./Components/PrivateRoute";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
-
+import UserRecipe from "./Components/UserRecipe";
+import Recipe from "./Components/Recipe";
+import UserEdit from "./Components/UserEdit";
 
 const initialFormValues = {
   name: "",
@@ -124,7 +126,6 @@ function App() {
     postNewUser(newUser);
   };
 
-
   const loginSubmit = () => {
     const loginValue = {
       username: formValues.username.trim(),
@@ -147,7 +148,6 @@ function App() {
   useEffect(() => {
     getUsers();
   }, []);
-
 
   useEffect(() => {
     schema.isValid(formValues).then((valid) => {
@@ -181,14 +181,6 @@ function App() {
           </div>
           <div>
             <NavLink
-              to="/recipes"
-              activeStyle={{ color: "white", fontWeight: "bold" }}
-            >
-              Recipes
-            </NavLink>
-          </div>
-          <div>
-            <NavLink
               to="/about"
               activeStyle={{ color: "white", fontWeight: "bold" }}
             >
@@ -212,14 +204,22 @@ function App() {
               Log In
             </NavLink>
           </div>
-     <div>
-          <NavLink
-            to="/recipes"
-            activeStyle={{ color: "white", fontWeight: "bold" }}
-          >
-            Recipes
-          </NavLink>
-        </div>
+          <div>
+            <NavLink
+              to="/recipes"
+              activeStyle={{ color: "white", fontWeight: "bold" }}
+            >
+              Recipes
+            </NavLink>
+          </div>
+          <div>
+            <NavLink
+              to="/UserRecipe"
+              activeStyle={{ color: "white", fontWeight: "bold" }}
+            >
+              User
+            </NavLink>
+          </div>
         </nav>
       </header>
 
@@ -233,14 +233,6 @@ function App() {
                   component={() => {
                     window.location.href =
                       "https://secret-family-recipies.netlify.app/index.html";
-                    return null;
-                  }}
-                />
-                <Route
-                  path="/recipes"
-                  component={() => {
-                    window.location.href =
-                      "https://secret-family-recipies.netlify.app/recipes.html";
                     return null;
                   }}
                 />
@@ -261,9 +253,13 @@ function App() {
                   }}
                 />
 
-              <PrivateRoute exact path="/recipes">
-          <Recipes />
-        </PrivateRoute>
+                <PrivateRoute exact path="/recipes">
+                  <Recipes />
+                </PrivateRoute>
+
+                <Route path="/recipes/:id">
+                  <Recipe />
+                </Route>
 
                 <Route path="/form">
                   <SignUp
@@ -274,20 +270,26 @@ function App() {
                     errors={formErrors}
                   />
                 </Route>
-               <Route path="/login">
-          <Login
-            values={formValues}
-            change={inputChange}
-            submit={loginSubmit}
-            disabled={disabled}
-            errors={formErrors}
-          />
-        </Route>
+                <Route path="/login">
+                  <Login
+                    values={formValues}
+                    change={inputChange}
+                    submit={loginSubmit}
+                    disabled={disabled}
+                    errors={formErrors}
+                  />
+                </Route>
                 <Route path="/confirmation">
                   <Confirmation values={formValues} />
                   {users.map((user) => {
                     return <User key={users.id} values={user} />;
                   })}
+                </Route>
+                <Route exact path="/UserRecipe">
+                  <UserRecipe />
+                </Route>
+                <Route path="/UserRecipe/:id">
+                  <UserEdit />
                 </Route>
               </Switch>
             </CSSTransition>
