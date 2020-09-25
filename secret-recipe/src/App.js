@@ -180,14 +180,6 @@ function App() {
           </div>
           <div>
             <NavLink
-              to="/recipes"
-              activeStyle={{ color: "white", fontWeight: "bold" }}
-            >
-              Recipes
-            </NavLink>
-          </div>
-          <div>
-            <NavLink
               to="/about"
               activeStyle={{ color: "white", fontWeight: "bold" }}
             >
@@ -240,14 +232,6 @@ function App() {
                   component={() => {
                     window.location.href =
                       "https://secret-family-recipies.netlify.app/index.html";
-                    return null;
-                  }}
-                />
-                <Route
-                  path="/recipes"
-                  component={() => {
-                    window.location.href =
-                      "https://secret-family-recipies.netlify.app/recipes.html";
                     return null;
                   }}
                 />
