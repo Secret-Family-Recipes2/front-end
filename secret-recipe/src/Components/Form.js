@@ -18,7 +18,7 @@ export default function SignUp(props) {
 
   return (
     <div className="formContainer">
-      <form className="formContainer" onSubmit={onSubmit}>
+      <form className="formContainer">
         <h2>Please enter your Information</h2>
         <div className="formInputs">
           <label>
@@ -147,19 +147,16 @@ export default function SignUp(props) {
 
         <div className="formsubmit">
           <Link to="/confirmation">
-            <button id="button" >
+            <button onClick={onSubmit} id="button">
               {" "}
               Sign me up!
             </button>
           </Link>
 
-
           <div className="errors">
             <div>{errors.name}</div>
             <div>{errors.email}</div>
             <div>{errors.password}</div>
-
-
             <div>{errors.level}</div>
             <div>{errors.styles}</div>
           </div>
