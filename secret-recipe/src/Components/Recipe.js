@@ -44,6 +44,7 @@ const Recipe = () => {
   return (
     <div>
       <h4 style={{ fontSize: "3rem" }}>{recipe.title}</h4>
+      <img src={recipe.image} />
       <p>Ingredients:</p>
       {ingredients.map((item) => {
         return <ul>{item.ingredient}</ul>;

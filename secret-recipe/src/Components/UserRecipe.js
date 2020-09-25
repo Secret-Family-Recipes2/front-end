@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { axiosWithAuth } from "../utils/axioswithauth";
+import { useHistory } from "react-router-dom";
 
 const initialForm = {
   title: "",
@@ -12,6 +13,7 @@ const UserRecipe = () => {
   const [userRecipes, setUserRecipes] = useState([]);
   const [form, setForm] = useState(initialForm);
   //   const [addForm, setAddForm] = useState([]);
+  const history = useHistory();
 
   const submit = (evt) => {
     evt.preventDefault();
@@ -20,6 +22,8 @@ const UserRecipe = () => {
       .then((res) => {
         console.log("success with test piggy!");
         console.log(res);
+        fetchTheData();
+        setForm(initialForm);
       })
       .catch((err) => {
         console.log(err);
@@ -38,6 +42,34 @@ const UserRecipe = () => {
         console.log(err);
       });
   }, []);
+
+  const fetchTheData = () => {
+    axiosWithAuth()
+      .get("/recipes/user-recipes")
+      .then((res) => {
+        console.log(res.data);
+        setUserRecipes(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const handleDelete = (ev, item) => {
+    ev.preventDefault();
+    axiosWithAuth()
+      .delete(`/recipes/user-recipes/${item.id}	`)
+      .then((res) => {
+        console.log("successfully deleted");
+        fetchTheData();
+      })
+      .catch((err) => console.log(err));
+  };
+
+  function routeToItem(ev, item) {
+    ev.preventDefault();
+    history.push(`/UserRecipe/${item.id}`);
+  }
 
   return (
     <div>
@@ -86,11 +118,12 @@ const UserRecipe = () => {
       <h5>User's Recipes</h5>
       {userRecipes.map((item) => {
         return (
-          <div>
+          <div onClick={(ev) => routeToItem(ev, item)}>
             <p>Title: {item.title}</p>
             <p>By: {item.source}</p>
             <p>Description: {item.description}</p>
             <p>Category: {item.category}</p>
+            <button onClick={(ev) => handleDelete(ev, item)}>Delete</button>
           </div>
         );
       })}

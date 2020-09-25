@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import Recipe from "./Recipe";
 import { axiosWithAuth } from "../utils/axioswithauth";
 import { connect } from "react-redux";
 import { fetchRecipes } from "../actions/recipesActions";

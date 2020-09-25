@@ -15,6 +15,7 @@ import PrivateRoute from "./Components/PrivateRoute";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import UserRecipe from "./Components/UserRecipe";
 import Recipe from "./Components/Recipe";
+import UserEdit from "./Components/UserEdit";
 
 const initialFormValues = {
   name: "",
@@ -284,8 +285,11 @@ function App() {
                     return <User key={users.id} values={user} />;
                   })}
                 </Route>
-                <Route path="/UserRecipe">
+                <Route exact path="/UserRecipe">
                   <UserRecipe />
+                </Route>
+                <Route path="/UserRecipe/:id">
+                  <UserEdit />
                 </Route>
               </Switch>
             </CSSTransition>
